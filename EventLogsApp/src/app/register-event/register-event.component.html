@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <h2>Registrar Evento</h2>
+  <form (ngSubmit)="onSubmit()" #eventForm="ngForm" class="row g-3"> <!-- Clases Bootstrap para organizar el formulario -->
+    
+    <div class="col-md-6">
+      <label for="eventDate" class="form-label">Fecha del Evento:</label>
+      <input type="datetime-local" id="eventDate" class="form-control" required [(ngModel)]="event.eventDate" name="eventDate">
+    </div>
+
+    <div class="col-md-6">
+      <label for="description" class="form-label">Descripción:</label>
+      <input type="text" id="description" class="form-control" required [(ngModel)]="event.description" name="description">
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" [disabled]="!eventForm.form.valid">Registrar</button>
+      <button type="button" class="btn btn-secondary ms-2" (click)="clearForm()">Limpiar</button> <!-- Botón Limpiar -->
+    </div>
+  </form>
+
+  <!-- Mostrar el mensaje de éxito si existe -->
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+</div>

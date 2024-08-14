@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EventLogsAPI.Models;
 using EventLogsAPI.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventLogsAPI.Controllers
 {
@@ -15,28 +16,42 @@ namespace EventLogsAPI.Controllers
             _eventLogService = eventLogService;
         }
 
-        // Endpoint para crear un nuevo registro de evento
         [HttpPost]
-        public async Task<IActionResult> CreateEventLog([FromBody] EventLog eventLog)
+        public async Task<IActionResult> CreateEventLog([FromBody] EventLog eventLog, [FromHeader(Name = "X-Source")] string source)
         {
-            // Validación del modelo; si no es válido, devuelve errores de validación
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); // Devuelve los errores de validación si el modelo no es válido
+                return BadRequest(ModelState);
             }
 
-            // Llama al servicio para agregar el nuevo registro de evento
+            // Determinar el tipo de evento según el origen
+            if (string.IsNullOrEmpty(source) || source == "Api")
+            {
+                eventLog.EventType = "Api";
+            }
+            else if (source == "Formulario")
+            {
+                eventLog.EventType = "Formulario";
+            }
+
             await _eventLogService.AddEventLogAsync(eventLog);
-            return Ok(eventLog); // Devuelve el evento creado
+            return Ok(eventLog);
         }
 
-        // Endpoint para obtener registros de eventos filtrados por tipo y fecha
+
         [HttpGet]
-        public async Task<IActionResult> GetEventLogs([FromQuery] string eventType, [FromQuery] DateTime? startDate, [FromQuery] DateTime? endDate)
+        public async Task<IActionResult> GetEventLogs([FromQuery] string? eventType = null, [FromQuery] DateTime? startDate = null, [FromQuery] DateTime? endDate = null)
         {
-            // Llama al servicio para obtener los registros de eventos filtrados
+            if (string.IsNullOrEmpty(eventType) && !startDate.HasValue && !endDate.HasValue)
+            {
+                var allEvents = await _eventLogService.GetAllEventLogsAsync();
+                return Ok(allEvents);
+            }
+
             var events = await _eventLogService.GetEventLogsAsync(eventType, startDate, endDate);
-            return Ok(events); // Devuelve la lista de eventos filtrados
+            return Ok(events);
         }
+
+
     }
 }
