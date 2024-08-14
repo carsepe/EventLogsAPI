@@ -17,7 +17,6 @@ Antes de empezar, asegúrate de tener instalado lo siguiente:
 
 ### 1. Clonar el repositorio
 
-```bash
 git clone https://github.com/usuario/EventLogsAPI.git
 cd EventLogsAPI
 
@@ -27,27 +26,32 @@ cd EventLogsAPI
 Abre Visual Studio 2022 y carga la solución EventLogsAPI.sln. Luego, restaura los paquetes de NuGet necesarios:
 
 ```bash
-dotnet restore
+dotnet restore 
+```
 
 #### 2.2 Crear y aplicar las migraciones de la base de datos
 En la consola de administrador de paquetes (Package Manager Console) de Visual Studio, ejecuta:
 
 ```bash
 Update-Database
+```
 
 ####2.3 Ejecutar la API
+
 Desde Visual Studio, selecciona la opción de iniciar el proyecto EventLogsAPI y ejecuta la aplicación. La API estará disponible en https://localhost:7136/api/EventLogs.
 
 ###3. Ejecutar el Frontend (Angular App)
 
 ```bash
 cd EventLogsApp
+```
 
 ####3.2 Instalar dependencias de npm
 Ejecuta el siguiente comando para instalar las dependencias necesarias:
 
 ```bash
 ng serve
+```
 
 La aplicación estará disponible en http://localhost:4200.
 
