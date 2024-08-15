@@ -17,8 +17,12 @@ Antes de empezar, asegúrate de tener instalado lo siguiente:
 
 ### 1. Clonar el repositorio
 
+```bash
 git clone https://github.com/carsepe/EventLogsAPI.git
+```
+```bash
 cd EventLogsAPI
+```
 
 ### 2. Ejecutar el Backend (.NET API)
 
@@ -38,6 +42,7 @@ Update-Database
 
 #### 2.3 Ejecutar la API
 Desde Visual Studio, selecciona la opción de iniciar el proyecto EventLogsAPI y ejecuta la aplicación. La API estará disponible en https://localhost:7136/api/EventLogs.
+
 
 ### 3. Ejecutar el Frontend (Angular App)
 

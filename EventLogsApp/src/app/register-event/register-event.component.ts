@@ -18,6 +18,7 @@ export class RegisterEventComponent {
   };
 
   successMessage: string = '';
+  errorMessage: string = ''; // Variable para almacenar el mensaje de error
 
   constructor(private eventLogsService: EventLogsService) {}
 
@@ -36,6 +37,7 @@ export class RegisterEventComponent {
       response => {
         console.log('Evento registrado:', response);
         this.successMessage = 'El evento se ha registrado exitosamente.';
+        this.errorMessage = ''; // Limpiar cualquier mensaje de error anterior
         this.event.description = ''; 
 
         setTimeout(() => {
@@ -44,7 +46,12 @@ export class RegisterEventComponent {
       },
       error => {
         console.error('Error al registrar el evento:', error);
-        this.successMessage = '';
+        this.errorMessage = 'No se pudo conectar con el servidor. Por favor, intente de nuevo más tarde.';
+        this.successMessage = ''; 
+
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 3000); // Limpiar el mensaje de error después de 3 segundos
       }
     );
   }
@@ -56,5 +63,6 @@ export class RegisterEventComponent {
       eventType: 'Formulario'
     };
     this.successMessage = ''; 
+    this.errorMessage = ''; // Limpiar cualquier mensaje de error
   }
 }
