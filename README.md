@@ -1,6 +1,6 @@
 # EventLogsAPI
 
-EventLogsAPI es un proyecto de gestión de eventos que incluye un backend desarrollado con .NET y un frontend desarrollado con Angular. La aplicación permite registrar eventos y consultar los eventos registrados utilizando varios filtros.
+EventLogsAPI es un proyecto de gestión de eventos que incluye un backend desarrollado con .NET y un frontend desarrollado con Angular. La aplicación permite registrar eventos y consultar los eventos registrados por medio de filtros.
 
 ![Interfaz de la aplicación](./interfaz.png)
 
@@ -17,7 +17,7 @@ Antes de empezar, asegúrate de tener instalado lo siguiente:
 
 ### 1. Clonar el repositorio
 
-git clone https://github.com/usuario/EventLogsAPI.git
+git clone https://github.com/carsepe/EventLogsAPI.git
 cd EventLogsAPI
 
 ### 2. Ejecutar el Backend (.NET API)
@@ -41,8 +41,10 @@ Desde Visual Studio, selecciona la opción de iniciar el proyecto EventLogsAPI y
 
 ### 3. Ejecutar el Frontend (Angular App)
 
+Dirígete a la carpeta del frontend `EventLogsApp`:
+
 ```bash
-cd EventLogsApp
+cd EventLogsAPI/EventLogsApp
 ```
 
 ### 3.2 Instalar dependencias de npm
@@ -54,11 +56,18 @@ ng serve
 
 La aplicación estará disponible en http://localhost:4200.
 
+### 3.3 Iniciar el servidor de desarrollo
+Para iniciar el servidor de desarrollo de Angular, ejecuta el siguiente comando:
+
+```bash
+ng serve --open
+```
+
 # Uso de la aplicación
 
 ### Registrar Eventos
 En la sección de "Registrar Evento", puedes registrar nuevos eventos ingresando la fecha y la descripción del evento. La fecha por defecto es la fecha y hora actual del navegador. Al hacer clic en "Registrar", se guardará el evento y se mostrará un mensaje de confirmación.
 
 ### Consultar Eventos
-En la sección "Consultar Eventos", puedes buscar eventos registrados aplicando filtros por tipo de evento y rango de fechas. Si no se especifican fechas, se devolverán todos los eventos del tipo seleccionado.
+En la sección "Consultar Eventos", puedes buscar eventos registrados aplicando filtros por tipo de evento y rango de fechas. Si no se especifican fechas, se devolverán todos los eventos.
 

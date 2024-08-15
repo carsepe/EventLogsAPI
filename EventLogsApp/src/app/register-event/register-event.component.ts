@@ -17,13 +17,13 @@ export class RegisterEventComponent {
     eventType: 'Formulario'
   };
 
-  successMessage: string = ''; // Variable para almacenar el mensaje de éxito
+  successMessage: string = '';
 
   constructor(private eventLogsService: EventLogsService) {}
 
   ngOnInit(): void {
     const now = new Date();
-    this.event.eventDate = now.toISOString().slice(0,16); // Formato compatible con `datetime-local`
+    this.event.eventDate = now.toISOString().slice(0,16); 
   }
 
   onSubmit() {
@@ -36,16 +36,15 @@ export class RegisterEventComponent {
       response => {
         console.log('Evento registrado:', response);
         this.successMessage = 'El evento se ha registrado exitosamente.';
-        this.event.description = ''; // Limpiar el campo de descripción
+        this.event.description = ''; 
 
-        // Hacer que el mensaje desaparezca después de 3 segundos
         setTimeout(() => {
           this.successMessage = '';
         }, 3000);
       },
       error => {
         console.error('Error al registrar el evento:', error);
-        this.successMessage = ''; // Limpiar el mensaje de éxito en caso de error
+        this.successMessage = '';
       }
     );
   }
@@ -54,8 +53,8 @@ export class RegisterEventComponent {
     this.event = {
       eventDate: '',
       description: '',
-      eventType: 'Formulario' // Mantener el tipo como "Formulario"
+      eventType: 'Formulario'
     };
-    this.successMessage = ''; // Limpiar el mensaje de éxito al limpiar el formulario
+    this.successMessage = ''; 
   }
 }

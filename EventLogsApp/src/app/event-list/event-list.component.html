@@ -1,35 +1,29 @@
-<div class="container-fluid mt-5"> <!-- Usar container-fluid para ocupar todo el ancho -->
+<div class="container-fluid mt-5">
   <h2>Consultar Eventos</h2>
   <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="row g-3 align-items-end">
-    <div class="col-md-3"> <!-- Cada campo ocupará un cuarto del ancho total -->
+    <div class="col-md-3">
       <label for="eventType" class="form-label">Tipo de Evento:</label>
       <select id="eventType" class="form-select" [(ngModel)]="eventType" name="eventType">
         <option value="Api">Api</option>
         <option value="Formulario">Formulario</option>
       </select>
     </div>
-
-    <div class="col-md-3"> <!-- Ajustar el tamaño para que todos los campos queden en una línea -->
+    <div class="col-md-3">
       <label for="startDate" class="form-label">Fecha de Inicio:</label>
       <input type="datetime-local" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate">
     </div>
-
-    <div class="col-md-3"> <!-- Ajustar el tamaño para que todos los campos queden en una línea -->
+    <div class="col-md-3">
       <label for="endDate" class="form-label">Fecha de Fin:</label>
       <input type="datetime-local" id="endDate" class="form-control" [(ngModel)]="endDate" name="endDate">
     </div>
-
-    <div class="col-md-3 d-flex justify-content-end align-items-end"> <!-- Los botones estarán alineados a la derecha -->
+    <div class="col-md-3 d-flex justify-content-end align-items-end"> 
       <button type="submit" class="btn btn-primary me-2">Buscar</button>
       <button type="button" class="btn btn-secondary" (click)="clearFilters()">Limpiar</button>
     </div>
   </form>
-
-  <!-- Mostrar el mensaje de error si existe -->
   <div *ngIf="errorMessage" class="alert alert-danger mt-3">
     {{ errorMessage }}
   </div>
-
   <!-- Mostrar la tabla de resultados si existen eventos -->
   <div *ngIf="events.length > 0" class="mt-4">
     <h3>Resultados:</h3>
